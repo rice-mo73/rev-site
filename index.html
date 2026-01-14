@@ -3,13 +3,293 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rice Electric Vehicle | Solar Car Team</title>
+    <title>Rice Electric Vehicle | Forged in the Dark</title>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --rice-blue: #00205B;
+            --rice-gray: #7C7E7F;
+            --accent-blue: #004F9F;
+            --solar-yellow: #FDB913; /* Added for 'Powered by Light' */
+            --text-dark: #333;
+            --text-light: #f4f4f4;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #f9f9f9;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .text-center { text-align: center; }
+        .section-padding { padding: 80px 0; }
+        .bg-light { background-color: #f9f9f9; }
+        .bg-white { background-color: #ffffff; }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 0; /* Boxy engineering look */
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 2px solid transparent;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary { background-color: var(--rice-blue); color: var(--white); }
+        .btn-primary:hover { background-color: var(--accent-blue); }
+
+        .btn-outline { border: 2px solid var(--white); color: var(--white); }
+        .btn-outline:hover { background-color: var(--white); color: var(--rice-blue); }
+
+        .btn-dark { background-color: #111; color: var(--white); }
+        .btn-dark:hover { background-color: #333; }
+
+        .btn-outline-dark { border: 2px solid var(--rice-blue); color: var(--rice-blue); }
+        .btn-outline-dark:hover { background-color: var(--rice-blue); color: var(--white); }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: var(--rice-blue);
+            color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo { font-size: 1.5rem; font-weight: 800; font-family: 'Montserrat', sans-serif; display: flex; align-items: center; gap: 10px; }
+        .logo i { color: var(--solar-yellow); }
+
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-weight: 600; font-size: 0.9rem; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--solar-yellow); }
+
+        .nav-actions { display: flex; gap: 15px; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 90vh;
+            /* Placeholder: Dark Garage Shot */
+            background-image: url('images/Mech action shots-1.webp'); 
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            /* Gradient overlay to enhance the "Dark to Light" feel */
+            background: radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%);
+        }
+
+        .hero-content { position: relative; z-index: 1; max-width: 900px; padding: 20px;}
+        
+        .hero-content h1 { 
+            font-size: 4rem; 
+            letter-spacing: 3px; 
+            margin-bottom: 5px; 
+            line-height: 1.1;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+        }
+        
+        .hero-content h2 { 
+            font-size: 2.5rem; 
+            margin-bottom: 25px; 
+            text-shadow: 0 0 20px rgba(253, 185, 19, 0.4); /* Yellow glow */
+        }
+        
+        .hero-content p { font-size: 1.2rem; margin-bottom: 35px; font-weight: 400; color: #ddd; }
+
+        /* --- STATS BAR --- */
+        .stats-bar {
+            background-color: #00153d;
+            color: var(--white);
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            padding: 30px 0;
+            border-bottom: 4px solid var(--rice-gray);
+        }
+
+        .stat-item { text-align: center; }
+        .stat-number { display: block; font-size: 2.5rem; font-weight: 800; font-family: 'Montserrat', sans-serif; color: var(--solar-yellow); }
+        .stat-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- MISSION --- */
+        .section-title { font-size: 2rem; margin-bottom: 20px; color: var(--rice-blue); }
+        .section-text { max-width: 700px; margin: 0 auto 30px auto; color: #555; font-size: 1.1rem;}
+
+        /* --- SPLIT SECTION (ASC) --- */
+        .split-section {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: var(--white);
+        }
+
+        .split-text {
+            flex: 1;
+            padding: 80px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #f4f4f4;
+            min-width: 300px;
+        }
+        .split-text h3 { color: var(--rice-blue); font-size: 2rem; margin-bottom: 20px; }
+        .split-text p { margin-bottom: 20px; color: #555; }
+
+        .split-image {
+            flex: 1;
+            background-size: cover;
+            background-position: center;
+            min-height: 400px;
+            min-width: 300px;
+            /* Placeholder: USA Map Route */
+            background-image: url('https://placehold.co/800x600/222/FFF?text=Image:+American+Solar+Challenge+Route+Map');
+        }
+
+        /* --- VEHICLES GRID --- */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: var(--white);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        .card:hover { 
+            transform: translateY(-5px); 
+            border-bottom: 3px solid var(--solar-yellow);
+        }
+        .card img { width: 100%; height: 220px; object-fit: cover; }
+        .card-body { padding: 25px; }
+        .card-body h4 { color: var(--rice-blue); margin-bottom: 10px; font-size: 1.2rem; }
+        .card-body p { font-size: 0.95rem; color: #666; }
+
+        /* --- SPONSORS --- */
+        .sponsor-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .sponsor-grid img {
+            filter: grayscale(100%);
+            opacity: 0.5;
+            transition: all 0.3s ease;
+            max-width: 160px;
+            height: auto;
+        }
+        .sponsor-grid img:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #111;
+            color: #888;
+            padding: 60px 0 0 0;
+            border-top: 5px solid var(--rice-blue);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 { color: var(--white); margin-bottom: 20px; font-size: 1.1rem; letter-spacing: 1px; }
+        .footer-col p { margin-bottom: 10px; font-size: 0.9rem; }
+
+        .social-icons a {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-right: 20px;
+            transition: color 0.3s;
+        }
+        .social-icons a:hover { color: var(--solar-yellow); }
+
+        .copyright {
+            background-color: #000;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 15px; padding: 15px; }
+            .nav-links { flex-direction: column; gap: 10px; text-align: center; display: none; /* Hide menu on mobile for simplicity in this demo */ }
+            /* Simple mobile menu fix for demo purposes */
+            .navbar:hover .nav-links { display: flex; } 
+            
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content h2 { font-size: 1.5rem; }
+            .stats-bar { flex-direction: column; gap: 30px; }
+            .split-section { flex-direction: column; }
+            .split-image { height: 300px; }
+        }
+    </style>
 </head>
 <body>
 
+    <!-- NAVIGATION -->
     <nav class="navbar">
         <div class="logo">
             <i class="fas fa-bolt"></i> REV
@@ -23,19 +303,22 @@
         </ul>
         <div class="nav-actions">
             <a href="#" class="btn btn-outline">Donate</a>
-            <a href="#" class="btn btn-primary">Join Team</a>
+            <a href="#" class="btn btn-primary" style="background-color: var(--solar-yellow); color: #000;">Join</a>
         </div>
     </nav>
 
+    <!-- HERO SECTION (Updated with Tagline) -->
     <header class="hero">
-    <div class="overlay"></div>
-    <div class="hero-content">
-        <h1>DREAMED IN THE DARK</h1>
-        <h2 style="color: #FDB913;">POWERED BY LIGHT</h2> <p>Rice University’s Premier Motorsport Team</p>
-        <a href="#mission" class="btn btn-primary btn-large">Our Mission</a>
-    </div>
-</header>
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <h1>FORGED IN THE DARK</h1>
+            <h2 style="color: #FDB913;">POWERED BY LIGHT</h2> 
+            <p>Rice University’s Premier Solar Motorsport Team</p>
+            <a href="#mission" class="btn btn-primary btn-large">Our Mission</a>
+        </div>
+    </header>
 
+    <!-- STATS BAR -->
     <div class="stats-bar">
         <div class="stat-item">
             <span class="stat-number">50+</span>
@@ -51,7 +334,8 @@
         </div>
     </div>
 
-    <section id="mission" class="section-padding text-center">
+    <!-- MISSION SECTION -->
+    <section id="mission" class="section-padding text-center bg-white">
         <div class="container">
             <h3 class="section-title">Engineering Excellence</h3>
             <p class="section-text">
@@ -61,6 +345,7 @@
         </div>
     </section>
 
+    <!-- THE CHALLENGE (Split Section) -->
     <section class="split-section">
         <div class="split-text">
             <h3>The American Solar Challenge</h3>
@@ -68,53 +353,60 @@
             <p>Before hitting the open road, our vehicle must survive the Formula Sun Grand Prix, a grueling track race that tests handling and braking. Our goal is to demonstrate practical, solar-powered mobility for the real world.</p>
             <a href="#" class="btn btn-outline-dark">Learn About ASC</a>
         </div>
-        <div class="split-image" style="background-image: url('https://via.placeholder.com/800x600/333/fff?text=Map+of+USA+Race+Route');"></div>
+        <!-- Placeholder: Map/Route Image defined in CSS .split-image -->
+        <div class="split-image"></div>
     </section>
 
+    <!-- THE VEHICLES -->
     <section class="section-padding bg-light">
         <div class="container">
             <h3 class="section-title text-center">Our Fleet</h3>
             <div class="grid-3">
+                <!-- Car 1: The New Project -->
                 <div class="card">
-                    <img src="https://via.placeholder.com/400x250/00205B/fff?text=Project+ASC+Render" alt="New Solar Car">
+                    <img src="images/ets car 5.webp" alt="New Solar Car">
                     <div class="card-body">
-                        <h4>Empress</h4>
-                        <p>A carbon-fiber, road-legal solar endurance vehicle designed for the American open road.</p>
+                        <h4>Project ASC</h4>
+                        <p>A carbon-fiber, road-legal solar endurance vehicle designed for the American open road. Currently in development.</p>
                     </div>
                 </div>
+                <!-- Car 2: The Efficiency Prototype -->
                 <div class="card">
                     <img src="images/ETS car 3.webp" alt="Prototype Car">
                     <div class="card-body">
-                        <h4>Pharoah</h4>
-                        <p>Our champion efficiency prototype. 2022 Shell Eco-Marathon Division Winner.</p>
+                        <h4>El Desafiador</h4>
+                        <p>Our champion efficiency prototype. 2022 Shell Eco-Marathon Division Winner. Optimized for max efficiency.</p>
                     </div>
                 </div>
+                <!-- Car 3: The Van -->
                 <div class="card">
-                    <img src="https://via.placeholder.com/400x250/555/fff?text=The+E-Van" alt="Electric Van">
+                    <img src="images/ELEC action shots-2.webp)" alt="Electric Van">
                     <div class="card-body">
-                        <h4>Kaiser</h4>
-                        <p>A classic 1997 delivery van converted to a fully electric drivetrain for campus sustainability.</p>
+                        <h4>The E-Van</h4>
+                        <p>A classic 1997 delivery van converted to a fully electric drivetrain for campus sustainability and logistics.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section-padding text-center">
+    <!-- SPONSORS -->
+    <section class="section-padding text-center bg-white">
         <div class="container">
             <h3 class="section-title">Powered By Partnerships</h3>
             <div class="sponsor-grid">
-                <img src="https://via.placeholder.com/150x80?text=Shell" alt="Sponsor">
-                <img src="https://via.placeholder.com/150x80?text=Rice+Engineering" alt="Sponsor">
-                <img src="https://via.placeholder.com/150x80?text=Ansys" alt="Sponsor">
-                <img src="https://via.placeholder.com/150x80?text=SolidWorks" alt="Sponsor">
-                <img src="https://via.placeholder.com/150x80?text=OEDK" alt="Sponsor">
+                <!-- Sponsor Placeholders -->
+                <img src="https://placehold.co/200x100/EEE/333?text=Shell" alt="Shell">
+                <img src="https://placehold.co/200x100/EEE/333?text=Rice+Engineering" alt="Rice Engineering">
+                <img src="https://placehold.co/200x100/EEE/333?text=Ansys" alt="Ansys">
+                <img src="https://placehold.co/200x100/EEE/333?text=SolidWorks" alt="SolidWorks">
+                <img src="https://placehold.co/200x100/EEE/333?text=OEDK" alt="OEDK">
             </div>
-            <br>
             <a href="#" class="btn btn-primary">Become a Sponsor</a>
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
         <div class="container footer-grid">
             <div class="footer-col">
@@ -134,8 +426,8 @@
                 <h4>Stay Updated</h4>
                 <p>Sign up for our race updates.</p>
                 <form>
-                    <input type="email" placeholder="Enter email" style="padding: 5px;">
-                    <button type="submit" class="btn btn-primary btn-sm">Sign Up</button>
+                    <input type="email" placeholder="Enter email" style="padding: 8px; width: 60%;">
+                    <button type="submit" class="btn btn-primary" style="padding: 8px 15px; font-size: 0.8rem;">Sign Up</button>
                 </form>
             </div>
         </div>

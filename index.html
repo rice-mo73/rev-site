@@ -12,13 +12,14 @@
     <style>
         /* --- RESET & VARIABLES --- */
         :root {
-            --rice-blue: #00205B;
+            --rice-blue: #47a2da; /* Updated to Electric Blue */
+            --rice-lilac: #afafd8; /* New Lilac */
             --rice-gray: #7C7E7F;
-            --accent-blue: #004F9F;
-            --solar-yellow: #FDB913; /* Added for 'Powered by Light' */
+            --solar-yellow: #FDB913;
             --text-dark: #333;
             --text-light: #f4f4f4;
             --white: #ffffff;
+            --bg-base: #fef1f5; /* Updated Base Background */
         }
 
         * {
@@ -31,7 +32,24 @@
             font-family: 'Open Sans', sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
-            background-color: #f9f9f9;
+            background-color: var(--bg-base);
+        }
+
+        /* --- FIXED LOGO BACKGROUND --- */
+        .fixed-logo-bg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            z-index: -1;
+            /* Placeholder for the logo */
+            background-image: src="REV Logo Black (1).svg";
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0.15; /* Subtle watermark effect */
         }
 
         h1, h2, h3, h4 {
@@ -52,13 +70,18 @@
 
         .text-center { text-align: center; }
         .section-padding { padding: 80px 0; }
-        .bg-light { background-color: #f9f9f9; }
-        .bg-white { background-color: #ffffff; }
+        
+        /* Opaque backgrounds for sections that hide the logo */
+        .bg-solid { background-color: var(--bg-base); }
+        .bg-contrast { background-color: var(--white); }
+        
+        /* Transparent backgrounds for sections that show the logo */
+        .bg-transparent { background-color: transparent; }
 
         .btn {
             display: inline-block;
             padding: 12px 30px;
-            border-radius: 0; /* Boxy engineering look */
+            border-radius: 0;
             font-weight: 700;
             font-size: 0.9rem;
             transition: all 0.3s ease;
@@ -69,7 +92,7 @@
         }
 
         .btn-primary { background-color: var(--rice-blue); color: var(--white); }
-        .btn-primary:hover { background-color: var(--accent-blue); }
+        .btn-primary:hover { background-color: var(--rice-lilac); }
 
         .btn-outline { border: 2px solid var(--white); color: var(--white); }
         .btn-outline:hover { background-color: var(--white); color: var(--rice-blue); }
@@ -106,7 +129,6 @@
         /* --- HERO SECTION --- */
         .hero {
             height: 90vh;
-            /* Placeholder: Dark Garage Shot */
             background-image: url('images/Mech action shots-1.webp'); 
             background-size: cover;
             background-position: center;
@@ -116,13 +138,13 @@
             justify-content: center;
             text-align: center;
             color: var(--white);
+            z-index: 1; /* Ensure hero covers fixed logo */
         }
 
         .overlay {
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            /* Gradient overlay to enhance the "Dark to Light" feel */
             background: radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%);
         }
 
@@ -139,35 +161,43 @@
         .hero-content h2 { 
             font-size: 2.5rem; 
             margin-bottom: 25px; 
-            text-shadow: 0 0 20px rgba(253, 185, 19, 0.4); /* Yellow glow */
+            text-shadow: 0 0 20px rgba(253, 185, 19, 0.4); 
         }
         
         .hero-content p { font-size: 1.2rem; margin-bottom: 35px; font-weight: 400; color: #ddd; }
 
-        /* --- STATS BAR --- */
+        /* --- STATS BAR (Made Bigger) --- */
         .stats-bar {
-            background-color: #00153d;
+            background-color: var(--rice-blue); /* Using the new Electric Blue */
             color: var(--white);
             display: flex;
             justify-content: center;
-            gap: 80px;
-            padding: 30px 0;
-            border-bottom: 4px solid var(--rice-gray);
+            gap: 120px; /* Increased gap */
+            padding: 50px 0; /* Increased padding */
+            border-bottom: 6px solid var(--rice-lilac); /* Thicker border with lilac accent */
+            position: relative;
+            z-index: 1;
         }
 
         .stat-item { text-align: center; }
-        .stat-number { display: block; font-size: 2.5rem; font-weight: 800; font-family: 'Montserrat', sans-serif; color: var(--solar-yellow); }
-        .stat-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        .stat-number { display: block; font-size: 3.5rem; /* Bigger font */ font-weight: 800; font-family: 'Montserrat', sans-serif; color: var(--white); text-shadow: 2px 2px 0px var(--rice-lilac); }
+        .stat-label { font-size: 1.2rem; /* Bigger label */ text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
 
-        /* --- MISSION --- */
-        .section-title { font-size: 2rem; margin-bottom: 20px; color: var(--rice-blue); }
-        .section-text { max-width: 700px; margin: 0 auto 30px auto; color: #555; font-size: 1.1rem;}
+        /* --- MISSION (Transparent for Logo Visibility) --- */
+        #mission {
+            position: relative;
+            z-index: 0; /* Allows seeing the fixed background behind it */
+        }
+        .section-title { font-size: 2.2rem; margin-bottom: 25px; color: var(--rice-blue); }
+        .section-text { max-width: 800px; margin: 0 auto 30px auto; color: #555; font-size: 1.2rem;}
 
-        /* --- SPLIT SECTION (ASC) --- */
+        /* --- SPLIT SECTION (Opaque to Hide Logo) --- */
         .split-section {
             display: flex;
             flex-wrap: wrap;
-            background-color: var(--white);
+            background-color: var(--white); /* Opaque white */
+            position: relative;
+            z-index: 1;
         }
 
         .split-text {
@@ -176,7 +206,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background: #f4f4f4;
+            background: var(--white);
             min-width: 300px;
         }
         .split-text h3 { color: var(--rice-blue); font-size: 2rem; margin-bottom: 20px; }
@@ -188,11 +218,16 @@
             background-position: center;
             min-height: 400px;
             min-width: 300px;
-            /* Placeholder: USA Map Route */
             background-image: url('https://placehold.co/800x600/222/FFF?text=Image:+American+Solar+Challenge+Route+Map');
         }
 
-        /* --- VEHICLES GRID --- */
+        /* --- TEAMS GRID (Transparent for Logo Visibility) --- */
+        .teams-section {
+            background-color: transparent; /* Transparent to show fixed logo */
+            position: relative;
+            z-index: 0;
+        }
+
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -201,21 +236,26 @@
         }
 
         .card {
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.9); /* Slight transparency on cards themselves? Or solid cards on transparent bg? Let's go with solid cards. */
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s;
             border-bottom: 3px solid transparent;
         }
         .card:hover { 
             transform: translateY(-5px); 
-            border-bottom: 3px solid var(--solar-yellow);
+            border-bottom: 3px solid var(--rice-blue);
         }
         .card img { width: 100%; height: 220px; object-fit: cover; }
         .card-body { padding: 25px; }
         .card-body h4 { color: var(--rice-blue); margin-bottom: 10px; font-size: 1.2rem; }
-        .card-body p { font-size: 0.95rem; color: #666; }
+        .card-body p { font-size: 0.95rem; color: #444; }
 
-        /* --- SPONSORS --- */
+        /* --- SPONSORS (Opaque) --- */
+        .sponsors-section {
+            background-color: var(--white);
+            position: relative;
+            z-index: 1;
+        }
         .sponsor-grid {
             display: flex;
             justify-content: center;
@@ -244,6 +284,8 @@
             color: #888;
             padding: 60px 0 0 0;
             border-top: 5px solid var(--rice-blue);
+            position: relative;
+            z-index: 1;
         }
 
         .footer-grid {
@@ -262,7 +304,7 @@
             margin-right: 20px;
             transition: color 0.3s;
         }
-        .social-icons a:hover { color: var(--solar-yellow); }
+        .social-icons a:hover { color: var(--rice-blue); }
 
         .copyright {
             background-color: #000;
@@ -275,19 +317,21 @@
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
             .navbar { flex-direction: column; gap: 15px; padding: 15px; }
-            .nav-links { flex-direction: column; gap: 10px; text-align: center; display: none; /* Hide menu on mobile for simplicity in this demo */ }
-            /* Simple mobile menu fix for demo purposes */
+            .nav-links { flex-direction: column; gap: 10px; text-align: center; display: none; }
             .navbar:hover .nav-links { display: flex; } 
             
             .hero-content h1 { font-size: 2.5rem; }
             .hero-content h2 { font-size: 1.5rem; }
-            .stats-bar { flex-direction: column; gap: 30px; }
+            .stats-bar { flex-direction: column; gap: 30px; padding: 40px 20px;}
             .split-section { flex-direction: column; }
             .split-image { height: 300px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- FIXED BACKGROUND LOGO -->
+    <div class="fixed-logo-bg"></div>
 
     <!-- NAVIGATION -->
     <nav class="navbar">
@@ -297,7 +341,7 @@
         <ul class="nav-links">
             <li><a href="#">Home</a></li>
             <li><a href="#">About</a></li>
-            <li><a href="#">The Cars</a></li>
+            <li><a href="#">The Team</a></li>
             <li><a href="#">Competitions</a></li>
             <li><a href="#">Sponsors</a></li>
         </ul>
@@ -307,7 +351,7 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION (Updated with Tagline) -->
+    <!-- HERO SECTION -->
     <header class="hero">
         <div class="overlay"></div>
         <div class="hero-content">
@@ -318,7 +362,7 @@
         </div>
     </header>
 
-    <!-- STATS BAR -->
+    <!-- STATS BAR (BIGGER) -->
     <div class="stats-bar">
         <div class="stat-item">
             <span class="stat-number">50+</span>
@@ -334,8 +378,8 @@
         </div>
     </div>
 
-    <!-- MISSION SECTION -->
-    <section id="mission" class="section-padding text-center bg-white">
+    <!-- MISSION SECTION (Transparent Background) -->
+    <section id="mission" class="section-padding text-center bg-transparent">
         <div class="container">
             <h3 class="section-title">Engineering Excellence</h3>
             <p class="section-text">
@@ -345,7 +389,7 @@
         </div>
     </section>
 
-    <!-- THE CHALLENGE (Split Section) -->
+    <!-- THE CHALLENGE (Opaque Background) -->
     <section class="split-section">
         <div class="split-text">
             <h3>The American Solar Challenge</h3>
@@ -353,49 +397,47 @@
             <p>Before hitting the open road, our vehicle must survive the Formula Sun Grand Prix, a grueling track race that tests handling and braking. Our goal is to demonstrate practical, solar-powered mobility for the real world.</p>
             <a href="#" class="btn btn-outline-dark">Learn About ASC</a>
         </div>
-        <!-- Placeholder: Map/Route Image defined in CSS .split-image -->
         <div class="split-image"></div>
     </section>
 
-    <!-- THE VEHICLES -->
-    <section class="section-padding bg-light">
+    <!-- OUR TEAMS (Transparent Background) -->
+    <section class="section-padding teams-section">
         <div class="container">
-            <h3 class="section-title text-center">Our Fleet</h3>
+            <h3 class="section-title text-center">Our Teams</h3>
             <div class="grid-3">
-                <!-- Car 1: The New Project -->
+                <!-- Electrical Team -->
                 <div class="card">
-                    <img src="images/ets car 5.webp" alt="New Solar Car">
+                    <img src="images/REV elec shots-2.webp" alt="Electrical Team">
                     <div class="card-body">
-                        <h4>Project ASC</h4>
-                        <p>A carbon-fiber, road-legal solar endurance vehicle designed for the American open road. Currently in development.</p>
+                        <h4>Electrical Team</h4>
+                        <p>The nerve center of the car. We design custom PCBs, manage the battery management system (BMS), and ensure efficient power distribution from solar arrays to the motor.</p>
                     </div>
                 </div>
-                <!-- Car 2: The Efficiency Prototype -->
+                <!-- Mechanical Team -->
                 <div class="card">
-                    <img src="images/ETS car 3.webp" alt="Prototype Car">
+                    <img src="images/MECH action shots-1.webp" alt="Mechanical Team">
                     <div class="card-body">
-                        <h4>El Desafiador</h4>
-                        <p>Our champion efficiency prototype. 2022 Shell Eco-Marathon Division Winner. Optimized for max efficiency.</p>
+                        <h4>Mechanical Team</h4>
+                        <p>The muscle and bones. We focus on aerodynamics, chassis design, suspension geometry, and composite manufacturing to build a vehicle that is lightweight yet structural.</p>
                     </div>
                 </div>
-                <!-- Car 3: The Van -->
+                <!-- Business Team -->
                 <div class="card">
-                    <img src="images/REV elec shots-2.webp)" alt="Electric Van">
+                    <img src="images/MECH action shots-2.webp" alt="Business Team">
                     <div class="card-body">
-                        <h4>The E-Van</h4>
-                        <p>A classic 1997 delivery van converted to a fully electric drivetrain for campus sustainability and logistics.</p>
+                        <h4>Business & Operations</h4>
+                        <p>The fuel that keeps us running. We manage team logistics, corporate sponsorships, public relations, and finance to ensure we have the resources to compete.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SPONSORS -->
-    <section class="section-padding text-center bg-white">
+    <!-- SPONSORS (Opaque Background) -->
+    <section class="section-padding text-center sponsors-section">
         <div class="container">
             <h3 class="section-title">Powered By Partnerships</h3>
             <div class="sponsor-grid">
-                <!-- Sponsor Placeholders -->
                 <img src="https://placehold.co/200x100/EEE/333?text=Shell" alt="Shell">
                 <img src="https://placehold.co/200x100/EEE/333?text=Rice+Engineering" alt="Rice Engineering">
                 <img src="https://placehold.co/200x100/EEE/333?text=Ansys" alt="Ansys">

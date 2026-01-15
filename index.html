@@ -3,330 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rice Electric Vehicle | Forged in the Dark</title>
+    <title>Rice Electric Vehicle | Solar Motorsport</title>
+    <link rel="icon" type="image/svg+xml" href="images/REV Logo Black.svg">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        /* --- RESET & VARIABLES --- */
-        :root {
-            --rice-blue: #47a2da; /* Updated to Electric Blue */
-            --rice-lilac: #afafd8; /* New Lilac */
-            --rice-gray: #7C7E7F;
-            --solar-yellow: #FDB913;
-            --text-dark: #333;
-            --text-light: #f4f4f4;
-            --white: #ffffff;
-            --bg-base: #fef1f5; /* Updated Base Background */
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Open Sans', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--bg-base);
-        }
-
-        /* --- FIXED LOGO BACKGROUND --- */
-        .fixed-logo-bg {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: 80%;
-            z-index: -1;
-            /* Placeholder for the logo */
-            background-image: src="REV Logo Black (1).svg";
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            opacity: 0.15; /* Subtle watermark effect */
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Montserrat', sans-serif;
-            text-transform: uppercase;
-            font-weight: 800;
-        }
-
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-
-        /* --- UTILITIES --- */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .text-center { text-align: center; }
-        .section-padding { padding: 80px 0; }
-        
-        /* Opaque backgrounds for sections that hide the logo */
-        .bg-solid { background-color: var(--bg-base); }
-        .bg-contrast { background-color: var(--white); }
-        
-        /* Transparent backgrounds for sections that show the logo */
-        .bg-transparent { background-color: transparent; }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            border-radius: 0;
-            font-weight: 700;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            cursor: pointer;
-            border: 2px solid transparent;
-            letter-spacing: 1px;
-        }
-
-        .btn-primary { background-color: var(--rice-blue); color: var(--white); }
-        .btn-primary:hover { background-color: var(--rice-lilac); }
-
-        .btn-outline { border: 2px solid var(--white); color: var(--white); }
-        .btn-outline:hover { background-color: var(--white); color: var(--rice-blue); }
-
-        .btn-dark { background-color: #111; color: var(--white); }
-        .btn-dark:hover { background-color: #333; }
-
-        .btn-outline-dark { border: 2px solid var(--rice-blue); color: var(--rice-blue); }
-        .btn-outline-dark:hover { background-color: var(--rice-blue); color: var(--white); }
-
-        /* --- NAVBAR --- */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            background-color: var(--rice-blue);
-            color: var(--white);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .logo { font-size: 1.5rem; font-weight: 800; font-family: 'Montserrat', sans-serif; display: flex; align-items: center; gap: 10px; }
-        .logo i { color: var(--solar-yellow); }
-
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { font-weight: 600; font-size: 0.9rem; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--solar-yellow); }
-
-        .nav-actions { display: flex; gap: 15px; }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 90vh;
-            background-image: url('images/Mech action shots-1.webp'); 
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            z-index: 1; /* Ensure hero covers fixed logo */
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%);
-        }
-
-        .hero-content { position: relative; z-index: 1; max-width: 900px; padding: 20px;}
-        
-        .hero-content h1 { 
-            font-size: 4rem; 
-            letter-spacing: 3px; 
-            margin-bottom: 5px; 
-            line-height: 1.1;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
-        }
-        
-        .hero-content h2 { 
-            font-size: 2.5rem; 
-            margin-bottom: 25px; 
-            text-shadow: 0 0 20px rgba(253, 185, 19, 0.4); 
-        }
-        
-        .hero-content p { font-size: 1.2rem; margin-bottom: 35px; font-weight: 400; color: #ddd; }
-
-        /* --- STATS BAR (Made Bigger) --- */
-        .stats-bar {
-            background-color: var(--rice-blue); /* Using the new Electric Blue */
-            color: var(--white);
-            display: flex;
-            justify-content: center;
-            gap: 120px; /* Increased gap */
-            padding: 50px 0; /* Increased padding */
-            border-bottom: 6px solid var(--rice-lilac); /* Thicker border with lilac accent */
-            position: relative;
-            z-index: 1;
-        }
-
-        .stat-item { text-align: center; }
-        .stat-number { display: block; font-size: 3.5rem; /* Bigger font */ font-weight: 800; font-family: 'Montserrat', sans-serif; color: var(--white); text-shadow: 2px 2px 0px var(--rice-lilac); }
-        .stat-label { font-size: 1.2rem; /* Bigger label */ text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
-
-        /* --- MISSION (Transparent for Logo Visibility) --- */
-        #mission {
-            position: relative;
-            z-index: 0; /* Allows seeing the fixed background behind it */
-        }
-        .section-title { font-size: 2.2rem; margin-bottom: 25px; color: var(--rice-blue); }
-        .section-text { max-width: 800px; margin: 0 auto 30px auto; color: #555; font-size: 1.2rem;}
-
-        /* --- SPLIT SECTION (Opaque to Hide Logo) --- */
-        .split-section {
-            display: flex;
-            flex-wrap: wrap;
-            background-color: var(--white); /* Opaque white */
-            position: relative;
-            z-index: 1;
-        }
-
-        .split-text {
-            flex: 1;
-            padding: 80px 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background: var(--white);
-            min-width: 300px;
-        }
-        .split-text h3 { color: var(--rice-blue); font-size: 2rem; margin-bottom: 20px; }
-        .split-text p { margin-bottom: 20px; color: #555; }
-
-        .split-image {
-            flex: 1;
-            background-size: cover;
-            background-position: center;
-            min-height: 400px;
-            min-width: 300px;
-            background-image: url('https://placehold.co/800x600/222/FFF?text=Image:+American+Solar+Challenge+Route+Map');
-        }
-
-        /* --- TEAMS GRID (Transparent for Logo Visibility) --- */
-        .teams-section {
-            background-color: transparent; /* Transparent to show fixed logo */
-            position: relative;
-            z-index: 0;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.9); /* Slight transparency on cards themselves? Or solid cards on transparent bg? Let's go with solid cards. */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-            border-bottom: 3px solid transparent;
-        }
-        .card:hover { 
-            transform: translateY(-5px); 
-            border-bottom: 3px solid var(--rice-blue);
-        }
-        .card img { width: 100%; height: 220px; object-fit: cover; }
-        .card-body { padding: 25px; }
-        .card-body h4 { color: var(--rice-blue); margin-bottom: 10px; font-size: 1.2rem; }
-        .card-body p { font-size: 0.95rem; color: #444; }
-
-        /* --- SPONSORS (Opaque) --- */
-        .sponsors-section {
-            background-color: var(--white);
-            position: relative;
-            z-index: 1;
-        }
-        .sponsor-grid {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 40px;
-            align-items: center;
-            margin-top: 40px;
-            margin-bottom: 40px;
-        }
-
-        .sponsor-grid img {
-            filter: grayscale(100%);
-            opacity: 0.5;
-            transition: all 0.3s ease;
-            max-width: 160px;
-            height: auto;
-        }
-        .sponsor-grid img:hover {
-            filter: grayscale(0%);
-            opacity: 1;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background-color: #111;
-            color: #888;
-            padding: 60px 0 0 0;
-            border-top: 5px solid var(--rice-blue);
-            position: relative;
-            z-index: 1;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-col h4 { color: var(--white); margin-bottom: 20px; font-size: 1.1rem; letter-spacing: 1px; }
-        .footer-col p { margin-bottom: 10px; font-size: 0.9rem; }
-
-        .social-icons a {
-            color: var(--white);
-            font-size: 1.5rem;
-            margin-right: 20px;
-            transition: color 0.3s;
-        }
-        .social-icons a:hover { color: var(--rice-blue); }
-
-        .copyright {
-            background-color: #000;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.8rem;
-            color: #555;
-        }
-
-        /* --- MOBILE RESPONSIVENESS --- */
-        @media (max-width: 768px) {
-            .navbar { flex-direction: column; gap: 15px; padding: 15px; }
-            .nav-links { flex-direction: column; gap: 10px; text-align: center; display: none; }
-            .navbar:hover .nav-links { display: flex; } 
-            
-            .hero-content h1 { font-size: 2.5rem; }
-            .hero-content h2 { font-size: 1.5rem; }
-            .stats-bar { flex-direction: column; gap: 30px; padding: 40px 20px;}
-            .split-section { flex-direction: column; }
-            .split-image { height: 300px; }
-        }
-    </style>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -336,7 +20,7 @@
     <!-- NAVIGATION -->
     <nav class="navbar">
         <div class="logo">
-            <i class="fas fa-bolt"></i> REV
+            <img src="images/REV Logo Black.svg" alt="REV Logo">
         </div>
         <ul class="nav-links">
             <li><a href="#">Home</a></li>
@@ -346,8 +30,8 @@
             <li><a href="#">Sponsors</a></li>
         </ul>
         <div class="nav-actions">
-            <a href="#" class="btn btn-outline">Donate</a>
-            <a href="#" class="btn btn-primary" style="background-color: var(--solar-yellow); color: #000;">Join</a>
+            <a href="#" class="btn btn-outline">Join</a>
+            <a href="#" class="btn btn-primary">Donate</a>
         </div>
     </nav>
 
@@ -355,8 +39,8 @@
     <header class="hero">
         <div class="overlay"></div>
         <div class="hero-content">
-            <h1>FORGED IN THE DARK</h1>
-            <h2 style="color: #FDB913;">POWERED BY LIGHT</h2> 
+            <h1>DREAMED IN THE DARK</h1>
+            <h2 class="hero-subtitle">POWERED BY LIGHT</h2> 
             <p>Rice University’s Premier Solar Motorsport Team</p>
             <a href="#mission" class="btn btn-primary btn-large">Our Mission</a>
         </div>
@@ -365,11 +49,11 @@
     <!-- STATS BAR (BIGGER) -->
     <div class="stats-bar">
         <div class="stat-item">
-            <span class="stat-number">50+</span>
+            <span class="stat-number">30+</span>
             <span class="stat-label">Students</span>
         </div>
         <div class="stat-item">
-            <span class="stat-number">15+</span>
+            <span class="stat-number">5+</span>
             <span class="stat-label">Majors</span>
         </div>
         <div class="stat-item">
@@ -383,7 +67,7 @@
         <div class="container">
             <h3 class="section-title">Engineering Excellence</h3>
             <p class="section-text">
-                The Rice Electric Vehicle Team (REV) is an entirely student-run organization dedicated to the design, construction, and racing of sustainable vehicles. Building on a legacy of efficiency, we are now undertaking our most ambitious challenge yet: designing a road-legal, multi-passenger solar car to compete in the <strong>American Solar Challenge</strong>.
+                The Rice Electric Vehicle Team (REV) is a student-run nonprofit organization dedicated to the design, construction, and racing of sustainable vehicles. Building on a legacy of efficiency, we are now undertaking our most ambitious challenge yet: designing a road-legal, multi-passenger solar car to compete in the <strong>American Solar Challenge</strong>.
             </p>
             <a href="#" class="btn btn-dark">Meet The Team</a>
         </div>
@@ -395,7 +79,7 @@
             <h3>The American Solar Challenge</h3>
             <p>The ASC is the ultimate test of grit and engineering. It is a multi-day, 1,500+ mile road rally across the United States driven entirely by solar energy.</p>
             <p>Before hitting the open road, our vehicle must survive the Formula Sun Grand Prix, a grueling track race that tests handling and braking. Our goal is to demonstrate practical, solar-powered mobility for the real world.</p>
-            <a href="#" class="btn btn-outline-dark">Learn About ASC</a>
+            <a href="https://www.americansolarchallenge.org/american-solar-challenge/" class="btn btn-outline-dark">Learn About ASC</a>
         </div>
         <div class="split-image"></div>
     </section>
@@ -415,7 +99,7 @@
                 </div>
                 <!-- Mechanical Team -->
                 <div class="card">
-                    <img src="images/MECH action shots-1.webp" alt="Mechanical Team">
+                    <img src="images/Mech action shots-1.webp" alt="Mechanical Team">
                     <div class="card-body">
                         <h4>Mechanical Team</h4>
                         <p>The muscle and bones. We focus on aerodynamics, chassis design, suspension geometry, and composite manufacturing to build a vehicle that is lightweight yet structural.</p>
@@ -423,7 +107,7 @@
                 </div>
                 <!-- Business Team -->
                 <div class="card">
-                    <img src="images/MECH action shots-2.webp" alt="Business Team">
+                    <img src="images/ets car 6.webp" alt="Business Team">
                     <div class="card-body">
                         <h4>Business & Operations</h4>
                         <p>The fuel that keeps us running. We manage team logistics, corporate sponsorships, public relations, and finance to ensure we have the resources to compete.</p>
@@ -438,11 +122,8 @@
         <div class="container">
             <h3 class="section-title">Powered By Partnerships</h3>
             <div class="sponsor-grid">
-                <img src="https://placehold.co/200x100/EEE/333?text=Shell" alt="Shell">
-                <img src="https://placehold.co/200x100/EEE/333?text=Rice+Engineering" alt="Rice Engineering">
-                <img src="https://placehold.co/200x100/EEE/333?text=Ansys" alt="Ansys">
-                <img src="https://placehold.co/200x100/EEE/333?text=SolidWorks" alt="SolidWorks">
-                <img src="https://placehold.co/200x100/EEE/333?text=OEDK" alt="OEDK">
+                <img src="images/rice oedk logo.png" alt="Rice Engineering">
+                <img src="images/Rice Shield 280 Blue.svg" alt="Ansys">
             </div>
             <a href="#" class="btn btn-primary">Become a Sponsor</a>
         </div>
@@ -468,8 +149,8 @@
                 <h4>Stay Updated</h4>
                 <p>Sign up for our race updates.</p>
                 <form>
-                    <input type="email" placeholder="Enter email" style="padding: 8px; width: 60%;">
-                    <button type="submit" class="btn btn-primary" style="padding: 8px 15px; font-size: 0.8rem;">Sign Up</button>
+                    <input type="email" placeholder="Enter email" class="footer-form">
+                    <button type="submit" class="btn btn-primary footer-form">Sign Up</button>
                 </form>
             </div>
         </div>
